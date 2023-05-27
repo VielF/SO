@@ -5,6 +5,7 @@
 List list_new(){
 	return (List) {
 		.head = NULL,
+		.len = 0,
 	};
 }
 
@@ -27,16 +28,17 @@ void list_add(List* l, Task* task){
 
 	new_node->next = l->head;
 	l->head = new_node;
+	l->len += 1;
 }
 
-void list_rm(List* q, Task* task){
-	if(q == NULL){ return; }
-	ListNode* cur = q->head;
+void list_rm(List* l, Task* task){
+	if(l == NULL){ return; }
+	ListNode* cur = l->head;
 	ListNode* prev = NULL;
 	while(cur != NULL){
 		if(cur->task->tid == task->tid){
 			if(prev == NULL){
-				q->head = cur->next;
+				l->head = cur->next;
 			}else{
 				prev->next = cur->next;
 			}
@@ -47,6 +49,7 @@ void list_rm(List* q, Task* task){
 		prev = cur;
 		cur = cur->next;
 	}
+	l->len -= 1;
 }
 
 

@@ -13,6 +13,7 @@ struct ListNode {
 
 struct List {
 	ListNode* head;
+	int len;
 };
 
 // Create list
