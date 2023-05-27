@@ -1,55 +1,31 @@
-/**
- * Various list operations
- */
- 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
 #include "list.h"
-#include "task.h"
+#include <stddef.h>
+#include <stdlib.h>
 
-
-// add a new task to the list of tasks
-void insert(struct node **head, Task *newTask) {
-	// add the new task to the list 
-	struct node *newNode = malloc(sizeof(struct node));
-
-	newNode->task = newTask;
-	newNode->next = *head;
-	*head = newNode;
+List list_new(){
+	return (List) {
+		.head = NULL,
+	};
 }
 
-// delete the selected task from the list
-void delete(struct node **head, Task *task) {
-	struct node *temp;
-	struct node *prev;
+void list_del(List* l){
+	if(l == NULL){ return; }
+	if(l->head == NULL) { return; }
 
-	temp = *head;
-	// special case - beginning of list
-	if (strcmp(task->name,temp->task->name) == 0) {
-		*head = (*head)->next;
+	ListNode* cur = l->head;
+	ListNode* nextNode = NULL;
+	while(cur->next != NULL){
+		nextNode = cur->next;
+		free(cur);
+		cur = nextNode;
 	}
-	else {
-		// interior or last element in the list
-		prev = *head;
-		temp = temp->next;
-		while (strcmp(task->name,temp->task->name) != 0) {
-			prev = temp;
-			temp = temp->next;
-		}
-
-		prev->next = temp->next;
-	}
+	free(cur);
+	l->head = NULL;
 }
 
-// traverse the list and print
-void traverse(struct node *head) {
-	struct node *temp;
-	temp = head;
-
-	while (temp != NULL) {
-		printf("[%s] [%d] [%d]\n",temp->task->name, temp->task->priority, temp->task->burst);
-		temp = temp->next;
-	}
+void list_add(List* q, Task* task){
 }
+
+void list_rm(List* q){}
+
+void list_display(const List* q){}

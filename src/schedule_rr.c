@@ -1,11 +1,14 @@
-#include "schedule_rr.h"
+// Round Robin scheduler implementation
 
-// add a task to the list
-void add(char *name, int priority, int burst){
-   int x = 0;
+#include <stdio.h>
+#include "schedule.h"
+
+Scheduler* sched_new(){
+	return NULL;
 }
 
-// invoke the scheduler
-void schedule(){
-   int x = 0;
+void sched_run(Scheduler* sc){
+	printf("RR\n");
 }
+
+void sched_add(Scheduler* sc, char *name, int priority, int burst){}

@@ -1,15 +1,30 @@
-/**
- * list data structure containing the tasks in the system
- */
+#ifndef _queue_h_include_
+#define _queue_h_include_
 
 #include "task.h"
 
-struct node {
-	Task *task;
-	struct node *next;
+typedef struct ListNode ListNode;
+typedef struct List List;
+
+struct ListNode {
+	ListNode* next;
+	Task* task;
 };
 
-// insert and delete operations.
-void insert(struct node **head, Task *task);
-void delete(struct node **head, Task *task);
-void traverse(struct node *head);
+struct List {
+	ListNode* head;
+};
+
+// Create list
+List list_new();
+// De-alloc list
+void list_del(List* l);
+
+// Add element to list
+void list_add(List* l, Task* task);
+// Search and remove element from list
+void list_rm(List* l);
+
+void list_display(const List* l);
+
+#endif /* Include guard */

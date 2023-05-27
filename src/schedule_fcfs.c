@@ -1,11 +1,13 @@
-#include "schedule_fcfs.h"
+#include "schedule.h"
+#include <stdio.h>
 
-// add a task to the list 
-void add(char *name, int priority, int burst){
-   int x = 0;
+Scheduler* sched_new(){
+	return NULL;
 }
 
-// invoke the scheduler
-void schedule(){
-   int x = 0;
+void sched_run(Scheduler* sc){
+	printf("FCFS\n");
 }
+
+void sched_add(Scheduler* sc, char *name, int priority, int burst){}
+

@@ -12,7 +12,7 @@
 
 #include "task.h"
 #include "list.h"
-#include "schedule_rr.h"
+#include "schedule.h"
 
 #define SIZE	100
 
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
 	FILE *in;
 	char *temp;
 	char task[SIZE];
+	Scheduler* sc = sched_new();
 
 	char *name;
 	int priority;
@@ -35,7 +36,7 @@ int main(int argc, char *argv[]){
 		burst = atoi(strsep(&temp,","));
 
 		// add the task to the scheduler's list of tasks
-		add(name,priority,burst);
+		sched_add(sc, name,priority,burst);
 
 		free(temp);
 	}
@@ -43,7 +44,8 @@ int main(int argc, char *argv[]){
 	fclose(in);
 
 	// invoke the scheduler
-	schedule();
+	sched_run(sc);
+	free(name);
 
 	return 0;
 }
