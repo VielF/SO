@@ -44,12 +44,12 @@ void list_rm(List* l, Task* task){
 			}
 			task_del(task);
 			free(cur);
+			l->len -= 1;
 			return;
 		}
 		prev = cur;
 		cur = cur->next;
 	}
-	l->len -= 1;
 }
 
 
