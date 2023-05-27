@@ -33,5 +33,9 @@ make clean
 ## Everything in a command
 
 ```
-make && ./rr <file name> && make clean
+make && ./rr rr-schedule_pri.txt && make clean
+```
+
+```
+make && ./rr rr-schedule.txt && make clean
 ```

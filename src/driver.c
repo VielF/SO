@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     int burst;
 
     in = fopen(argv[1],"r");
-    
+
     while (fgets(task,SIZE,in) != NULL) {
         temp = strdup(task);
         name = strsep(&temp,",");
