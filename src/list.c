@@ -9,14 +9,20 @@ List list_new(){
 	};
 }
 
+static void list_node_del(ListNode* node){
+	if(node == NULL){ return; }
+	task_del(node->task);
+	free(node->task);
+	free(node);
+}
+
+
 void list_del(List* l){
 	if(l == NULL){ return; }
 	ListNode* cur = l->head;
 	while(cur != NULL){
 		ListNode* next = cur->next;
-		task_del(cur->task);
-		free(cur->task);
-		free(cur);
+		list_node_del(cur);
 		cur = next;
 	}
 	free(cur);
@@ -36,14 +42,14 @@ void list_rm(List* l, Task* task){
 	ListNode* cur = l->head;
 	ListNode* prev = NULL;
 	while(cur != NULL){
+		// TODO: Change this to pointer instead of ID comparison
 		if(cur->task->tid == task->tid){
 			if(prev == NULL){
 				l->head = cur->next;
-			}else{
+			} else {
 				prev->next = cur->next;
 			}
-			task_del(cur->task);
-			free(cur);
+			list_node_del(cur);
 			l->len -= 1;
 			return;
 		}
