@@ -24,7 +24,7 @@ void list_del(List* l){
 	l->head = NULL;
 }
 
-void list_add(List* q, Task* task){
+void list_add(List* q, Task task){
 }
 
 void list_rm(List* q){}

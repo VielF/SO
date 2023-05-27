@@ -12,7 +12,7 @@ struct Task {
 	int burst;
 };
 
-extern Task task_new(const char* name, int id, int priority, int burst);
+extern Task task_new(char* name, int id, int priority, int burst);
 extern void task_del(Task* t);
 
 #endif /* Include guard */

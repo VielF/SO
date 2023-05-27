@@ -1,11 +1,10 @@
-#define _POSIX_C_SOURCE 200809L
 #include "task.h"
 #include <stdlib.h>
 #include <string.h>
 
-Task task_new(const char* name, int id, int priority, int burst){
+Task task_new(char* name, int id, int priority, int burst){
 	Task t = {
-		.name = strdup(name),
+		.name = name,
 		.tid = id,
 		.burst = burst,
 		.priority = priority,
