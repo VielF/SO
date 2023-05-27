@@ -20,7 +20,7 @@
 int main(int argc, char *argv[]){
 	if(argc < 2){ return 1; }
 	char* temp;
-	char* filedata = NULL;
+	char** filedata = NULL;
 	char task[SIZE];
 	Scheduler* sc = sched_new();
 
@@ -28,8 +28,7 @@ int main(int argc, char *argv[]){
 	int priority;
 	int burst;
 
-	filedata = loadfile(argv[1]);
-	printf("=== FILE ===\n%s\n=== EOF ==\n", filedata);
+	filedata = file_lines(argv[1]);
 
 	sched_add(sc, "Task 1", 1, 10);
 	sched_add(sc, "Task 2", 1, 10);
@@ -41,7 +40,7 @@ int main(int argc, char *argv[]){
 	sched_run(sc);
 
 	// Cleanup
-	sched_del(sc);
 	free(filedata);
+	sched_del(sc);
 	return 0;
 }

@@ -1,24 +1,41 @@
 #ifndef _load_h_include_
 #define _load_h_include_
 
-#define _POSIX_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include "task.h"
 #include "list.h"
-static char* loadfile(const char* path){
+
+static char** file_lines(const char* path){
 	FILE* f = fopen(path, "r");
-	char* data = NULL;
+	char** lines = NULL;
+
+	// Get file size
 	int start, end, size;
 	fseek(f, 0, SEEK_END);
 	end = ftell(f);
 	rewind(f);
 	start = ftell(f);
 	size = end - start;
-	data = malloc(size + 1);
-	fread(data, 1, size, f);
-	data[size] = 0;
-	return data;
+
+	int line_count = 1;
+	{ // Count lines
+		char c = fgetc(f);
+		while(c != EOF){
+			if(c == '\n'){ line_count += 1; }
+			c = fgetc(f);
+		}
+	}
+
+
+	// Alloc lines
+
+	rewind(f);
+
+	lines = malloc(sizeof(*lines) * line_count);
+	lines[line_count - 1] = NULL;
+
+	return lines;
 }
 
 static char* str_slice(const char* s, int begin, int end){

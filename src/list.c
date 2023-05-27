@@ -13,10 +13,12 @@ void list_del(List* l){
 	ListNode* cur = l->head;
 	while(cur != NULL){
 		ListNode* next = cur->next;
+		task_del(cur->task);
+		free(cur->task);
 		free(cur);
 		cur = next;
 	}
-	free(l);
+	free(cur);
 }
 
 void list_add(List* l, Task* task){
