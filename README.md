@@ -1,4 +1,4 @@
-# SO
+# OS
 
 - Code provided by professor Felipe Viel to the Operating Systems class
 
@@ -15,13 +15,20 @@ cd src/
 ### Compile
 
 ```
-Make
+make all
 ```
 
 ### Run
+```
+./fcfs rr-schedule
+```
 
 ```
-./rr <file name>
+./rr rr-schedule
+```
+
+```
+./priority_rr rr-schedule_pri
 ```
 
 ### Clean
@@ -30,12 +37,17 @@ Make
 make clean
 ```
 
-## Everything in a command
+### Everything in a command
 
 ```
-make && ./rr rr-schedule_pri.txt && make clean
+clear && make all && ./fcfs rr-schedule.txt && make clean
 ```
 
 ```
-make && ./rr rr-schedule.txt && make clean
+clear && make all && ./rr rr-schedule.txt && make clean
+```
+
+
+```
+clear && make all && ./priority_rr rr-schedule_pri.txt && make clean
 ```

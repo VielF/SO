@@ -80,7 +80,5 @@ void sched_add(Scheduler* sc, char *name, int priority, int burst){
 
 void sched_del(Scheduler* sc){
 	if(sc == NULL){ return; }
-	for(int i = 0; i < MAX_PRIORITY - MIN_PRIORITY; i++){
-		
-	}
+	free(sc);
 }
