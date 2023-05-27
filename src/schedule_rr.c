@@ -22,7 +22,7 @@ void sched_run(Scheduler* sc){
 		return;
 	}
 
-	if (sc->list.size == 0) {
+	if (sc->list.len == 0) {
 		printf("No tasks in the scheduler.\n");
 		return;
 	}
@@ -47,7 +47,7 @@ void sched_run(Scheduler* sc){
 		cur = cur->next;
 
 		if (cur == NULL) {
-			cur = sc->list.head;
+			return;
 		}
 	}
 }
