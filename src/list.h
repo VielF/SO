@@ -5,8 +5,8 @@
 #include "task.h"
 
 struct node {
-    Task *task;
-    struct node *next;
+	Task *task;
+	struct node *next;
 };
 
 // insert and delete operations.

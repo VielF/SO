@@ -14,36 +14,36 @@
 #include "list.h"
 #include "schedule_rr.h"
 
-#define SIZE    100
+#define SIZE	100
 
-int main(int argc, char *argv[])
-{
-    FILE *in;
-    char *temp;
-    char task[SIZE];
+int main(int argc, char *argv[]){
+   if(argc < 2){ return 1; }
+	FILE *in;
+	char *temp;
+	char task[SIZE];
 
-    char *name;
-    int priority;
-    int burst;
+	char *name;
+	int priority;
+	int burst;
 
-    in = fopen(argv[1],"r");
+	in = fopen(argv[1],"r");
 
-    while (fgets(task,SIZE,in) != NULL) {
-        temp = strdup(task);
-        name = strsep(&temp,",");
-        priority = atoi(strsep(&temp,","));
-        burst = atoi(strsep(&temp,","));
+	while (fgets(task,SIZE,in) != NULL) {
+		temp = strdup(task);
+		name = strsep(&temp,",");
+		priority = atoi(strsep(&temp,","));
+		burst = atoi(strsep(&temp,","));
 
-        // add the task to the scheduler's list of tasks
-        add(name,priority,burst);
+		// add the task to the scheduler's list of tasks
+		add(name,priority,burst);
 
-        free(temp);
-    }
+		free(temp);
+	}
 
-    fclose(in);
+	fclose(in);
 
-    // invoke the scheduler
-    schedule();
+	// invoke the scheduler
+	schedule();
 
-    return 0;
+	return 0;
 }
