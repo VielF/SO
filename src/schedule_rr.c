@@ -17,6 +17,39 @@ Scheduler* sched_new(){
 }
 
 void sched_run(Scheduler* sc){
+	if (sc == NULL) {
+		printf("Scheduler not initialized.\n");
+		return;
+	}
+
+	if (sc->list.size == 0) {
+		printf("No tasks in the scheduler.\n");
+		return;
+	}
+
+	ListNode* cur = sc->list.head;
+
+	while (cur != NULL) {
+		Task* task = cur->task;
+
+		if (task->burst > 0) {
+			if (task->burst > QUANTUM) {
+				run(task, QUANTUM);
+				task->burst -= QUANTUM;
+			}
+			else {
+				run(task, task->burst);
+				task->burst = 0;
+				printf("Task [%s] [%d] finished.\n", task->name, task->tid);
+			}
+		}
+
+		cur = cur->next;
+
+		if (cur == NULL) {
+			cur = sc->list.head;
+		}
+	}
 }
 
 void sched_add(Scheduler* sc, char *name, int priority, int burst){
