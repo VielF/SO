@@ -17,10 +17,30 @@ Scheduler* sched_new(){
 }
 
 void sched_remove(Scheduler* sc, Task* task){
+	list_rm(&sc->tasks, task);
 }
 
 void sched_run(Scheduler* sc){
-	printf("FCFS\n");
+	if (sc == NULL) {
+		printf("Scheduler not initialized.\n");
+		return;
+	}
+
+	if (sc->tasks.len == 0) {
+		printf("No tasks in the scheduler.\n");
+		return;
+	}
+
+	ListNode* cur = sc->tasks.head;
+
+	while (cur != NULL) {
+		Task* task = cur->task;
+
+		run(task, task->burst);
+		task->burst = 0;
+		printf("Task [%s] [%d] finished.\n", task->name, task->tid);
+		cur = cur->next;
+	}
 }
 
 void sched_add(Scheduler* sc, char *name, int priority, int burst){
