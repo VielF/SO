@@ -5,21 +5,18 @@
 
 struct Scheduler{
 	List list;
-	int quantum;
 	int last_id;
 };
 
 Scheduler* sched_new(){
 	Scheduler* sc = (Scheduler*)malloc(sizeof(Scheduler));
 	sc->list = list_new();
-	sc->quantum = 10;
 	sc->last_id = 0;
 
 	return sc;
 }
 
 void sched_run(Scheduler* sc){
-	printf("RR run()\n");
 }
 
 void sched_add(Scheduler* sc, char *name, int priority, int burst){
@@ -31,5 +28,6 @@ void sched_add(Scheduler* sc, char *name, int priority, int burst){
 }
 
 void sched_del(Scheduler* sc){
-	printf("RR add()\n");
+	list_del(&sc->list);
+	free(sc);
 }

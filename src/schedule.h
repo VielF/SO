@@ -6,6 +6,7 @@
 #include "list.h"
 #include "task.h"
 #include <stdio.h>
+#include "CPU.h"
 
 #define MIN_PRIORITY 1
 #define MAX_PRIORITY 10

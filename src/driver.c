@@ -29,7 +29,6 @@ int main(int argc, char *argv[]){
 	int burst;
 
 	filedata = file_lines(argv[1]);
-
 	sched_add(sc, "Task 1", 1, 10);
 	sched_add(sc, "Task 2", 1, 10);
 	sched_add(sc, "Task 3", 1, 10);
