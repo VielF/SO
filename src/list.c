@@ -19,6 +19,7 @@ void list_del(List* l){
 		free(cur);
 		cur = nextNode;
 	}
+	free(cur->task);
 	free(cur);
 	l->head = NULL;
 }

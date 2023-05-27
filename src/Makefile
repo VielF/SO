@@ -4,20 +4,20 @@
 # make priority_rr - for priority with round robin scheduling
 
 CC=gcc
-CFLAGS=-Wall
-LDFLAGS=-lc -lm
+CFLAGS=-Wall -fsanitize=address
+LDFLAGS=-lc -lm -lasan
 
 .PHONY: all clean
 
 all: rr priority_rr fcfs
 
-rr: driver.o list.o CPU.o schedule_rr.o
+rr: driver.o list.o CPU.o schedule_rr.o loadfile.h
 	$(CC) $(CFLAGS) -o rr driver.o schedule_rr.o list.o CPU.o $(LDFLAGS)
 
-priority_rr: driver.o list.o CPU.o schedule_rr_p.o
+priority_rr: driver.o list.o CPU.o schedule_rr_p.o loadfile.h
 	$(CC) $(CFLAGS) -o priority_rr driver.o schedule_rr_p.o list.o CPU.o $(LDFLAGS)
 
-fcfs: driver.o list.o CPU.o schedule_fcfs.o
+fcfs: driver.o list.o CPU.o schedule_fcfs.o loadfile.h
 	$(CC) $(CFLAGS) -o fcfs driver.o schedule_fcfs.o list.o CPU.o $(LDFLAGS)
 
 driver.o: driver.c schedule.h

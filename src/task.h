@@ -1,16 +1,18 @@
-/**
- * Representation of a task in the system.
- */
+// Representation of a task in the system.
 
-#ifndef TASK_H
-#define TASK_H
+#ifndef _task_h_include_
+#define _task_h_include_
 
-// representation of a task
-typedef struct task {
+typedef struct Task Task;
+
+struct Task {
 	char *name;
 	int tid;
 	int priority;
 	int burst;
-} Task;
+};
 
-#endif
+extern Task task_new(const char* name, int id, int priority, int burst);
+extern void task_del(Task* t);
+
+#endif /* Include guard */

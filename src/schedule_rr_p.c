@@ -10,3 +10,5 @@ void sched_run(Scheduler* sc){
 }
 
 void sched_add(Scheduler* sc, char *name, int priority, int burst){}
+
+void sched_del(Scheduler* sc){}

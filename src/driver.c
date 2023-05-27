@@ -6,20 +6,23 @@
  *  [name] [priority] [CPU burst]
  */
 
+#define _POSIX_C_SOURCE 200809L
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "task.h"
 #include "list.h"
+#include "loadfile.h"
 #include "schedule.h"
 
 #define SIZE	100
 
 int main(int argc, char *argv[]){
 	if(argc < 2){ return 1; }
-	FILE *in;
-	char *temp;
+	char* temp;
+	char* filedata = NULL;
 	char task[SIZE];
 	Scheduler* sc = sched_new();
 
@@ -27,25 +30,14 @@ int main(int argc, char *argv[]){
 	int priority;
 	int burst;
 
-	in = fopen(argv[1], "r");
-
-	while (fgets(task,SIZE,in) != NULL) {
-		temp = strdup(task);
-		name = strsep(&temp,",");
-		priority = atoi(strsep(&temp,","));
-		burst = atoi(strsep(&temp,","));
-
-		// add the task to the scheduler's list of tasks
-		sched_add(sc, name,priority,burst);
-
-		free(temp);
-	}
-
-	fclose(in);
+	filedata = loadfile(argv[1]);
+	printf("=== FILE ===\n%s\n=== EOF ==\n", filedata);
 
 	// invoke the scheduler
 	sched_run(sc);
-	free(name);
 
+	// Cleanup
+	sched_del(sc);
+	free(filedata);
 	return 0;
 }
