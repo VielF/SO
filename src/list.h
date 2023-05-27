@@ -8,7 +8,7 @@ typedef struct List List;
 
 struct ListNode {
 	ListNode* next;
-	Task* task;
+	Task task;
 };
 
 struct List {
@@ -20,9 +20,9 @@ List list_new();
 // De-alloc list
 void list_del(List* l);
 // Add element to list
-void list_add(List* l, Task* task);
+void list_add(List* l, Task task);
 // Search and remove element from list
-void list_rm(List* l);
+void list_rm(List* l, Task task);
 // Print list
 void list_display(const List* l);
 

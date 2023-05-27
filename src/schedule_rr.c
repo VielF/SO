@@ -2,8 +2,19 @@
 #include <stdio.h>
 #include "schedule.h"
 
+struct Scheduler{
+	List list;
+	int quantum;
+	int last_id;
+};
+
 Scheduler* sched_new(){
-	return NULL;
+	Scheduler* sc = (Scheduler*)malloc(sizeof(Scheduler));
+	sc->list = list_new();
+	sc->quantum = 10;
+	sc->last_id = 0;
+
+	return sc;
 }
 
 void sched_run(Scheduler* sc){
@@ -11,7 +22,10 @@ void sched_run(Scheduler* sc){
 }
 
 void sched_add(Scheduler* sc, char *name, int priority, int burst){
-	printf("RR add()\n");
+	Task task = task_new(name, sc->last_id, priority, burst);
+	sc->last_id += 1;
+
+	list_add(&sc->list, task);
 }
 
 void sched_del(Scheduler* sc){
