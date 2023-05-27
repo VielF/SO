@@ -42,7 +42,7 @@ void list_rm(List* l, Task* task){
 			}else{
 				prev->next = cur->next;
 			}
-			task_del(task);
+			task_del(cur->task);
 			free(cur);
 			l->len -= 1;
 			return;

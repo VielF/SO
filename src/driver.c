@@ -22,11 +22,11 @@ int main(int argc, char *argv[]){
 
 	filedata = load_file(argv[1]);
 
-	sched_add(sc, "Task 1", 1, 10);
-	sched_add(sc, "Task 2", 1, 10);
-	sched_add(sc, "Task 3", 1, 10);
-	sched_add(sc, "Task 4", 1, 10);
-	sched_add(sc, "Task 5", 1, 10);
+	sched_add(sc, "Task 1", 1, 50);
+	sched_add(sc, "Task 2", 1, 50);
+	sched_add(sc, "Task 3", 1, 50);
+	sched_add(sc, "Task 4", 1, 50);
+	sched_add(sc, "Task 5", 1, 50);
 
 	// invoke the scheduler
 	sched_run(sc);

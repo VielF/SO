@@ -16,6 +16,9 @@ Scheduler* sched_new(){
 	return sc;
 }
 
+void sched_remove(Scheduler* sc, Task* task){
+}
+
 void sched_run(Scheduler* sc){
 	printf("FCFS\n");
 }

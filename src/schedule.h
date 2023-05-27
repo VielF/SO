@@ -16,6 +16,7 @@ typedef struct Scheduler Scheduler;
 // allocate scheduler
 extern Scheduler* sched_new();
 
+extern void sched_remove(Scheduler* sc, Task* task);
 // invoke the scheduler
 extern void sched_run(Scheduler* sc);
 
