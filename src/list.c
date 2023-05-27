@@ -43,7 +43,7 @@ void delete(struct node **head, Task *task) {
 	}
 }
 
-// traverse the list
+// traverse the list and print
 void traverse(struct node *head) {
 	struct node *temp;
 	temp = head;

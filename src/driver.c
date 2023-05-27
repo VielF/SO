@@ -17,7 +17,7 @@
 #define SIZE	100
 
 int main(int argc, char *argv[]){
-   if(argc < 2){ return 1; }
+	if(argc < 2){ return 1; }
 	FILE *in;
 	char *temp;
 	char task[SIZE];
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
 	int priority;
 	int burst;
 
-	in = fopen(argv[1],"r");
+	in = fopen(argv[1], "r");
 
 	while (fgets(task,SIZE,in) != NULL) {
 		temp = strdup(task);
