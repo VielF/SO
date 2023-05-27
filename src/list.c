@@ -19,34 +19,26 @@ void list_del(List* l){
 	free(l);
 }
 
-void list_add(List* q, Task task){
+void list_add(List* l, Task* task){
 	ListNode* new_node = malloc(sizeof(*new_node));
 	new_node->task = task;
-	new_node->next = NULL;
 
-	if(q->head == NULL){
-		q->head = new_node;
-		return;
-	}
-
-	ListNode* cur = q->head;
-	while(cur->next != NULL){
-		cur = cur->next;
-	}
-	cur->next = new_node;
+	new_node->next = l->head;
+	l->head = new_node;
 }
 
-void list_rm(List* q, Task task){
+void list_rm(List* q, Task* task){
 	if(q == NULL){ return; }
 	ListNode* cur = q->head;
 	ListNode* prev = NULL;
 	while(cur != NULL){
-		if(cur->task.tid == task.tid){
+		if(cur->task->tid == task->tid){
 			if(prev == NULL){
 				q->head = cur->next;
 			}else{
 				prev->next = cur->next;
 			}
+			task_del(task);
 			free(cur);
 			return;
 		}

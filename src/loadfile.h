@@ -40,8 +40,7 @@ static List parse_tasks(const char* s, int n){
 
 	while(cur < n){
 		// Name
-		if(s[i] == ','){
-			cur = i - 1;
+		if(s[cur] == ','){
 			str_slice(s, begin, cur);
 			begin = cur + 1;
 		}

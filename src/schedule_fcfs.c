@@ -23,10 +23,7 @@ void sched_run(Scheduler* sc){
 void sched_add(Scheduler* sc, char *name, int priority, int burst){
 	Task* new_task = malloc(sizeof(*new_task));
 	sc->last_id += 1;
-	new_task->burst    = burst;
-	new_task->name     = name;
-	new_task->priority = priority;
-	new_task->tid      = sc->last_id;
+	*new_task = task_new(name, sc->last_id, priority, burst);
 	list_add(&sc->tasks, new_task);
 }
 
