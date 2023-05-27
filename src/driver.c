@@ -15,20 +15,13 @@
 #include "loadfile.h"
 #include "schedule.h"
 
-#define SIZE	100
-
 int main(int argc, char *argv[]){
 	if(argc < 2){ return 1; }
-	char* temp;
-	char** filedata = NULL;
-	char task[SIZE];
+	char* filedata = NULL;
 	Scheduler* sc = sched_new();
 
-	char *name;
-	int priority;
-	int burst;
+	filedata = load_file(argv[1]);
 
-	filedata = file_lines(argv[1]);
 	sched_add(sc, "Task 1", 1, 10);
 	sched_add(sc, "Task 2", 1, 10);
 	sched_add(sc, "Task 3", 1, 10);

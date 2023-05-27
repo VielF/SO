@@ -1,7 +1,7 @@
 #include <string.h>
 #include "task.h"
 #include <stdlib.h>
-#include "strclone.h"
+#include "str_utils.h"
 
 Task task_new(char* name, int id, int priority, int burst){
 	Task t = {
