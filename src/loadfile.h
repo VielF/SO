@@ -36,15 +36,19 @@ static List parse_tasks(const char* s, int n){
 	List l = list_new();
 
 	int begin = 0;
-	int end = 0;
+	int cur = 0;
 
-	for(int i = 0; i < n; i += 1){
+	while(cur < n){
 		// Name
 		if(s[i] == ','){
-			end = i - 1;
-			str_slice(s, begin, end);
-			begin = end + 1;
+			cur = i - 1;
+			str_slice(s, begin, cur);
+			begin = cur + 1;
 		}
+		// Priority
+
+		// Burst
+		n += 1;
 	}
 	return l;
 }

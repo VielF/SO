@@ -31,6 +31,12 @@ int main(int argc, char *argv[]){
 	filedata = loadfile(argv[1]);
 	printf("=== FILE ===\n%s\n=== EOF ==\n", filedata);
 
+	sched_add(sc, "Task 1", 1, 10);
+	sched_add(sc, "Task 2", 1, 10);
+	sched_add(sc, "Task 3", 1, 10);
+	sched_add(sc, "Task 4", 1, 10);
+	sched_add(sc, "Task 5", 1, 10);
+
 	// invoke the scheduler
 	sched_run(sc);
 
