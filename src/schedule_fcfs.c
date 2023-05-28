@@ -39,7 +39,11 @@ void sched_run(Scheduler* sc){
 		run(task, task->burst);
 		task->burst = 0;
 		printf("Task [%s] [%d] finished.\n", task->name, task->tid);
-		cur = cur->next;
+		ListNode* next = cur->next;
+		list_rm(&sc->tasks, task);
+		cur = next;
+		printf("Length of list: %d\n", sc->tasks.len);
+		continue;
 	}
 }
 
